@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_vmselectioncreationgp" default="compile.module.vmselectioncreationgp">
+  <dirname property="module.vmselectioncreationgp.basedir" file="${ant.file.module_vmselectioncreationgp}"/>
+  
+  <property name="module.jdk.home.vmselectioncreationgp" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.vmselectioncreationgp" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.vmselectioncreationgp" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.vmselectioncreationgp" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="vmselectioncreationgp.output.dir" value="${module.vmselectioncreationgp.basedir}/../../../../../../../home/tanboxi/IdeaProjects/MaxTan/VMSelectionCreationGP/out/production/VMSelectionCreationGP"/>
+  <property name="vmselectioncreationgp.testoutput.dir" value="${module.vmselectioncreationgp.basedir}/../../../../../../../home/tanboxi/IdeaProjects/MaxTan/VMSelectionCreationGP/out/test/VMSelectionCreationGP"/>
+  
+  <path id="vmselectioncreationgp.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="vmselectioncreationgp.module.production.classpath">
+    <path refid="${module.jdk.classpath.vmselectioncreationgp}"/>
+    <path refid="library.ecj.classpath"/>
+    <path refid="library.r_skeletons.classpath"/>
+    <path refid="library.r_user_library.classpath"/>
+  </path>
+  
+  <path id="vmselectioncreationgp.runtime.production.module.classpath">
+    <pathelement location="${vmselectioncreationgp.output.dir}"/>
+    <path refid="library.ecj.classpath"/>
+    <path refid="library.r_skeletons.classpath"/>
+    <path refid="library.r_user_library.classpath"/>
+  </path>
+  
+  <path id="vmselectioncreationgp.module.classpath">
+    <path refid="${module.jdk.classpath.vmselectioncreationgp}"/>
+    <pathelement location="${vmselectioncreationgp.output.dir}"/>
+    <path refid="library.ecj.classpath"/>
+    <path refid="library.r_skeletons.classpath"/>
+    <path refid="library.r_user_library.classpath"/>
+  </path>
+  
+  <path id="vmselectioncreationgp.runtime.module.classpath">
+    <pathelement location="${vmselectioncreationgp.testoutput.dir}"/>
+    <pathelement location="${vmselectioncreationgp.output.dir}"/>
+    <path refid="library.ecj.classpath"/>
+    <path refid="library.r_skeletons.classpath"/>
+    <path refid="library.r_user_library.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.vmselectioncreationgp">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.vmselectioncreationgp">
+    <patternset refid="excluded.from.module.vmselectioncreationgp"/>
+  </patternset>
+  
+  <path id="vmselectioncreationgp.module.sourcepath">
+    <dirset dir="${module.vmselectioncreationgp.basedir}/../../../../../../../home/tanboxi/IdeaProjects/MaxTan/VMSelectionCreationGP">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.vmselectioncreationgp" depends="compile.module.vmselectioncreationgp.production,compile.module.vmselectioncreationgp.tests" description="Compile module VMSelectionCreationGP"/>
+  
+  <target name="compile.module.vmselectioncreationgp.production" depends="register.custom.compilers" description="Compile module VMSelectionCreationGP; production classes">
+    <mkdir dir="${vmselectioncreationgp.output.dir}"/>
+    <javac2 destdir="${vmselectioncreationgp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.vmselectioncreationgp}/javac">
+      <compilerarg line="${compiler.args.vmselectioncreationgp}"/>
+      <bootclasspath refid="vmselectioncreationgp.module.bootclasspath"/>
+      <classpath refid="vmselectioncreationgp.module.production.classpath"/>
+      <src refid="vmselectioncreationgp.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.vmselectioncreationgp"/>
+    </javac2>
+    
+    <copy todir="${vmselectioncreationgp.output.dir}">
+      <fileset dir="${module.vmselectioncreationgp.basedir}/../../../../../../../home/tanboxi/IdeaProjects/MaxTan/VMSelectionCreationGP/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.vmselectioncreationgp.tests" depends="register.custom.compilers,compile.module.vmselectioncreationgp.production" description="compile module VMSelectionCreationGP; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.vmselectioncreationgp" description="cleanup module">
+    <delete dir="${vmselectioncreationgp.output.dir}"/>
+    <delete dir="${vmselectioncreationgp.testoutput.dir}"/>
+  </target>
+</project>
